@@ -3,9 +3,7 @@
 A Vue.js web application to explore different types of photography.
 
 ## Live Demo
-
-**[View Live Demo](https://mathieugb9.github.io/mathieu/](https://mathieugb9.github.io/HTMLPHOTOGRAPHY/)**
-
+https://mathieugb9.github.io/HTMLPHOTOGRAPHY/
 ## Project Description
 
 Photography Explorer is an interactive single-page application built with Vue.js that showcases different photography types and techniques.
