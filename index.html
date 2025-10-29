@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Photography Explorer</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>📷 Photography Types Explorer</h1>
+            <h2>Discover the Art of Photography</h2>
+        </header>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main id="app">
+            <h3 v-text="mainHeading"></h3>
+
+            <div class="card-container fade-in">
+                <div class="image-container">
+                    <img 
+                        :src="photographyTopics[index].image" 
+                        :alt="photographyTopics[index].title"
+                    >
+                </div>
+
+                <section @click="isFlipped = !isFlipped" class="card">
+                    <h2 v-show="!isFlipped" v-text="photographyTopics[index].title"></h2>
+                    <p v-show="isFlipped" v-text="photographyTopics[index].desc"></p>
+                </section>
+            </div>
+
+            <div class="buttons">
+                <button 
+                    @click="move(-1)" 
+                    type="button"
+                    :disabled="index === 0"
+                >
+                    ⬅️ Previous
+                </button>
+
+                <button 
+                    @click="move(1)" 
+                    type="button"
+                    :disabled="index === photographyTopics.length - 1"
+                >
+                    Next ➡️
+                </button>
+            </div>
+
+            <div class="progress-indicator">
+                <p>{{ index + 1 }} of {{ photographyTopics.length }} - {{ photographyTopics[index].title }}</p>
+                
+                <div class="progress-dots">
+                    <span 
+                        v-for="(topic, i) in photographyTopics" 
+                        :key="i"
+                        class="dot"
+                        :class="{ active: i === index }"
+                    ></span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h4>Learn More About Photography</h4>
+                <p>
+                    Photography is an art form that captures moments, tells stories, and preserves memories. 
+                    Whether you're interested in landscapes, portraits, or wildlife, there's a photography style for everyone.
+                </p>
+                <p>
+                    Explore resources at 
+                    <a :href="learnMoreUrl" target="_blank">Digital Photography School</a>
+                    to enhance your skills and discover new techniques.
+                </p>
+            </div>
+        </main>
+
+        <aside class="main-sidebar">
+            <h4>Photography Tips</h4>
+            <dl>
+                <dt>Composition:</dt>
+                <dd>
+                    Use the rule of thirds to create balanced and interesting photos. Position key elements 
+                    along the grid lines for better visual impact.
+                </dd>
+
+                <dt>Lighting:</dt>
+                <dd>
+                    Golden hour (early morning or late afternoon) provides the best natural light. 
+                    Avoid harsh midday sun for softer, more flattering results.
+                </dd>
+
+                <dt>Practice:</dt>
+                <dd>
+                    Take photos regularly to improve your skills. Experiment with different angles, 
+                    settings, and subjects to find your unique style.
+                </dd>
+
+                <dt>Equipment:</dt>
+                <dd>
+                    Start with what you have. Great photos come from understanding your camera, 
+                    not necessarily having the most expensive gear.
+                </dd>
+            </dl>
+        </aside>
+
+        <footer>
+            &copy; <span id="year"></span> Photography Types Explorer
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="data/data.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const photographyApp = {
+            data() {
+                return {
+                    mainHeading: 'Explore Different Photography Types',
+                    photographyTopics,
+                    isFlipped: false,
+                    learnMoreUrl: 'https://digital-photography-school.com/',
+                    index: 0
+                }
+            },
+            methods: {
+                move(change) {
+                    const newIndex = this.index + change;
+                    if (newIndex >= 0 && newIndex < this.photographyTopics.length) {
+                        this.index = newIndex;
+                        this.isFlipped = false;
+                    }
+                }
+            }
+        };
+
+        const app = Vue.createApp(photographyApp).mount('#app');
+    </script>
+</body>
+</html>

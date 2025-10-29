@@ -1,2 +1,0 @@
-# HTMLPHOTOGRAPHY
-Barbier Mathieu
