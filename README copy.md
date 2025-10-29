@@ -4,7 +4,7 @@ A Vue.js web application to explore different types of photography.
 
 ## Live Demo
 
-**[View Live Demo]([https://mathieugb9.github.io/mathieu/](https://mathieugb9.github.io/HTMLPHOTOGRAPHY/))**
+**[View Live Demo](https://mathieugb9.github.io/mathieu/](https://mathieugb9.github.io/HTMLPHOTOGRAPHY/)**
 
 ## Project Description
 
